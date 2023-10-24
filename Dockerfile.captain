@@ -1,0 +1,20 @@
+FROM node:20 AS build
+
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
+
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+COPY ./ /usr/src/app/
+
+RUN npm install -g npm@10.2.0
+RUN npm i
+RUN npm run build
+
+FROM nginx:1.25.2
+
+COPY --from=build /usr/src/app/dist /usr/share/ngninx/html
+COPY ./client/default.conf /etc/nginx/conf.d/
+EXPOSE 4000
+
+CMD ["nginx", "-g", "daemon off;"]

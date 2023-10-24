@@ -1,0 +1,19 @@
+[
+    {"id": 1,"name":"Ayoub","isChecked":false},
+    {"id": 2,"name":"Loris","isChecked":false},
+    {"id": 3,"name":"Adrien","isChecked":true},
+    {"id": 4,"name":"Anaïs","isChecked":true},
+    {"id": 5,"name":"Annie", "isChecked":true},
+    {"id": 6,"name":"Claire", "isChecked":true},
+    {"id": 7,"name":"Cédric", "isChecked":true},
+    {"id": 8,"name":"Damien","isChecked":true},
+    {"id": 9,"name":"David", "isChecked":true},
+    {"id": 10,"name":"Killian","isChecked":true},
+    {"id": 11,"name":"Laurène","isChecked":true},
+    {"id": 12,"name":"Marvin","isChecked":true},
+    {"id": 13,"name":"Michael","isChecked":true},
+    {"id": 14,"name":"Nicolas","isChecked":true},
+    {"id": 15,"name":"Samuel","isChecked":true},
+    {"id": 16,"name":"Thibaut","isChecked":true},
+    {"id": 17,"name":"Tristan","isChecked":true}
+]
