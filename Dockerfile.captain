@@ -1,20 +1,22 @@
-FROM node:20 AS builder
+# Building environement
+FROM node:20-alpine as build
+# Set working directory
+WORKDIR /app
+# Add modules.bin to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+# Copy the project inside the working dir
+COPY . ./
+# Install dependencies and lauch the build
+RUN pnpm install
+RUN pnpm run build
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-COPY ./ /usr/src/app/
-
-RUN npm install -g npm@10.2.5
-RUN npm install
-RUN npm run build
-
-FROM nginx:1.25.2
-
-COPY --from=builder /usr/src/app/dist /usr/share/ngninx/html
+# Production environement
+FROM nginx:stable-alpine3.17
+# Copy the build inside Nginx web folder
+COPY --from=build /app/dist /usr/share/ngninx/html/
+# Apply Nginx config
 COPY ./default.conf /etc/nginx/conf.d/
+# Open this port on docker
 EXPOSE 3000
-
+# Launch the web server
 CMD ["nginx", "-g", "daemon off;"]
